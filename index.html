@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>首页</title>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=no,minimal-ui">
+	<link rel="stylesheet" type="text/css" href="css/jquery.fullpage.css">
+	<style type="text/css">
+		body,div,ul,ol,dl,li,dt,dd,h1,h2,h3,h4,h5,p,form,iframe,input,textarea,a,span,em,strong,img{padding:0;margin:0;}
+		.clear{clear: both;}
+		header{    
+			position: absolute;
+		    top: 0;
+		    z-index: 99;
+		    width: 100%;
+		}
+		nav{width: 100%;height: 70px;background-color: #fff;}
+		.nav_container{width: 1000px;margin: 0 auto;}
+		.nav_title{float: left;}
+		.nav_content{float: right; margin-top: 15px;}
+		.nav_content ul {list-style: none;}
+		.nav_content li{
+			float: left;
+			margin-right: 35px;
+			font-size: 17px;
+			font-weight: normal;
+			padding: 8px 15px;
+			border-radius: 5px;
+			cursor: pointer;
+			border:1px solid #fff;
+		}
+		.nav_content li:hover{
+			color: #66ccff;
+			border:1px solid #66ccff;
+		}
+		.nav_content li:first-child{
+			color: #fff;
+			background-color: #66ccff;
+			border:1px solid #66ccff;
+		}
+		.main{
+			top:0;
+    		position: relative;
+    	}
+		.page1{
+			background-image: url(images/1.jpg);
+			background-repeat: no-repeat;
+			background-size: cover;
+			background-position: center center;
+			text-align: center;
+		}
+		.page2{
+			background-image: url(images/2.jpg);
+			background-repeat: no-repeat;
+			background-size: cover;
+			background-position: center center;
+			text-align: center;
+		}
+		.page3{
+			background-image: url(images/4.jpg);
+			background-repeat: no-repeat;
+			background-size: cover;
+			background-position: center center;
+			text-align: center;
+		}
+		.page4{
+			background-image: url(images/3.jpg);
+			background-repeat: no-repeat;
+			background-size: cover;
+			background-position: center center;
+			text-align: center;
+		}
+		.page1 div{
+			width: 1000px;
+		    font-size: 75px;
+		    color: #fff;
+		    top: 40%;
+		    margin: 0 auto;
+		    text-align: center;
+		    animation: lefteaseinAnimate 3s ease 1;    
+		    -webkit-animation: lefteaseinAnimate 3s ease 1;
+		    -ms-animation: lefteaseinAnimate 3s ease 1;
+		    -o-animation: lefteaseinAnimate 3s ease 1;
+		    -moz-animation: lefteaseinAnimate 3s ease 1;		    
+		    /*规定动画的最后状态为结束状态*/
+		    animation-fill-mode:forwards;
+		    -webkit-animation-fill-mode: forwards;  
+			-o-animation-fill-mode: forwards; 
+			-ms-animation-fill-mode: forwards;   
+			-moz-animation-fill-mode: forwards; 
+		}
+
+		/*从页面的左边淡入页面效果*/
+		@keyframes lefteaseinAnimate{
+		    0%{ transform: translateX(-200px); opacity: 0;}   
+		    100%{ transform: translateX(0px); opacity: 1;}        
+		}
+		@-webkit-keyframes lefteaseinAnimate{
+		    0%{ -webkit-transform: translateX(-200px); opacity: 0;}
+		    100%{ -webkit-transform: translateX(0px); opacity: 1;}    
+		}
+		@-o-keyframes lefteaseinAnimate{
+		    0%{ -webkit-transform: translateX(-200px); opacity: 0;}
+		    100%{ -webkit-transform: translateX(0px); opacity: 1;}    
+		}
+		@-ms-keyframes lefteaseinAnimate{
+		    0%{ -webkit-transform: translateX(-200px); opacity: 0;}
+		    100%{ -webkit-transform: translateX(0px); opacity: 1;}    
+		}
+		@-moz-keyframes lefteaseinAnimate{
+		    0%{ -webkit-transform: translateX(-200px); opacity: 0;}
+		    100%{ -webkit-transform: translateX(0px); opacity: 1;}    
+		}
+		.technology{
+			width: 1000px;
+			margin: 0 auto;
+		}
+		.tech_card_warpper{
+			color: #Fff;
+			width: 30%;
+			margin: 1%;
+		    height: 250px;
+		    display: inline-block;
+		    border: 1px solid #fff;
+		}
+		.tech_card_title{
+			height: 50px;
+			line-height: 50px;
+			background-color: #fff;
+			color: #333;
+			font-size: 20px;
+		}
+		.tech_card_content{
+			height: 200px;
+		}
+		.tech_card_content div{
+			height: 50px;
+			line-height: 50px;
+			cursor: default;
+		}
+		.tech_card_content div:hover{
+			color: #333;
+			background-color: #fff;
+		}
+	</style>
+</head>
+<body>
+<div class="container">
+	<header>
+		<nav>
+			<div class="nav_container">
+				<div class="nav_title"><img src="images/logo.jpg" title="标题" alt="标题" width="70" height="70" /></div>
+				<div class="nav_content">
+					<ul>
+						<li>首页</li>
+						<li>专业技能</li>
+						<li>作品展示</li>
+						<li>联系我</li>
+					</ul>
+				</div>
+				<div class="clear"></div>
+			</div>
+		</nav>
+	</header>
+	<div class="main" id="main">
+		<div class="page1 section section1">
+			<div>
+				<span>Hello World!<span>
+			</div>
+		</div>
+		<div class="page2 section section2">
+			<div class="technology">
+				<div class="tech_card_warpper">
+					<div class="tech_card">
+						<div class="tech_card_title">语言</div>
+						<div class="tech_card_content">
+							<div>HTML(5)</div>
+							<div>CSS(3)</div>
+							<div>javascript</div>
+							<div>Node</div>
+						</div>
+					</div>
+				</div>
+				<div class="tech_card_warpper">
+					<div class="tech_card_title">思想</div>
+					<div class="tech_card_content">
+						<div>W3C标准</div>
+						<div>语义化</div>
+						<div>响应式设计</div>
+						<div>组件化开发</div>
+					</div>
+				</div>
+				<div class="tech_card_warpper">
+					<div class="tech_card_title">框架</div>
+					<div class="tech_card_content">
+						<div>jquery</div>
+						<div>bootstrap</div>
+						<div>angular</div>
+						<div>mui</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="page3 section section3">
+		</div> 
+		<div class="page4 section section4">
+		</div> 
+	</div>
+</div>
+<script type="text/javascript" src="js/jquery.js"></script>
+<script type="text/javascript" src="js/jquery.fullpage.js"></script>
+<script type="text/javascript">
+    $(function(){
+		$('#main').fullpage({
+		});
+	});
+</script>
+</body>
+</html>
