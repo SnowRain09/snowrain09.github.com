@@ -1,37 +1,186 @@
-## Welcome to GitHub Pages
+<!DOCTYPE html>
+<html>
+<head>
+	<title>demo</title>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=no,minimal-ui">
+	<style type="text/css">
+		body,div,ul,ol,dl,li,dt,dd,h1,h2,h3,h4,h5,p,form,iframe,input,textarea,a,span,em,strong,img,header,nav,footer{padding:0;margin:0;}
+		html,body{height: 100%;}
+		body{overflow: hidden;}
+		#myCanvas{border: 1px;background-color: rgb(247,250,252);position: absolute;top: 0;z-index: 1;}
+		.login_warpper{
+			width: 300px;
+			height: 400px;
+			/*background-color: red;*/
+			position: relative;
+			top: 50%;
+			z-index: 2;
+			margin: 0 auto;
+			margin-top: -200px;
+		}
+		.login_container{
+			padding: 15px;
+			font-family: '微软雅黑';
+		}
+		.login_title {text-align: center;}
+		.login_title span{font-size: 28px; color: #0f88eb }
+		.login_content{margin-top: 20px;}
+		.login_content input{
+			line-height: 19px;
+    		color: #555;
+    		padding: 14px 12px;
+    		background-color: #fff;
+    		width: 242px;
+		}
+		.login_content input:first-child{
+			position: relative;
+			top: 1px;
+		}
+		.login_content button{
+			display: block;
+		    padding: 0;
+		    width: 100%;
+		    font-size: 15px;
+		    background-color: #0f88eb;
+		    box-shadow: none;
+		    border: 0;
+		    border-radius: 3px;
+		    line-height: 41px;
+		    color: #fff;
+		    cursor: pointer;
+		    margin-top: 30px;
+		}
+	</style>
+</head>
+<body>
+<div class="login_warpper">
+	<div class="login_container">
+		<div class="login_title">
+			<span>登陆</span>
+		</div>
+		<div class="login_content">
+			<form>
+				<input type="text" id="accounts" placeholder="账号" required></input>
+				<input type="password" id="password" placeholder="密码" required></input>
+				<button type="button" onclick="login()">登陆</button>
+			</form>
+		</div>
+	</div>
+</div>
+<canvas id="myCanvas"></canvas>	
+<script type="text/javascript">		
+	//获取窗口宽高		
+	var w = window.innerWidth;		
+	var h = window.innerHeight;		
+	var canvas = document.getElementById("myCanvas");		
+	var ctx = canvas.getContext("2d");		
+	//设置画布宽高与窗口宽高一样		
+	canvas.width = w;		
+	canvas.height = h;		
+	//随机数函数		
+	function fnRandom(min,max){			
+		return parseInt((max-min)*Math.random()+min+1)		
+	}		
+	function Round(){			
+		this.r = fnRandom(10,30);			
+		this.diam = this.r*2;			
+	//随机位置			
+		var x = fnRandom(0,canvas.width - this.r);			
+		this.x = x<this.r?this.r:x;			
+		var y = fnRandom(0,canvas.height-this.r);			
+		this.y = y<this.r?this.r:y			
+	//随机速度			
+		var speed = fnRandom(2,4)/10			
+		this.speedX = fnRandom(0,4)>2?speed:-speed;			
+		this.speedY = fnRandom(0,4)>2?speed:-speed;				
+		this.color = "#66ccff";		
+	}		
+	Round.prototype.draw = function(){			
+	//绘制函数			
+		ctx.fillStyle = this.color;			
+		ctx.beginPath()			
+		ctx.arc(this.x,this.y,this.r,0,Math.PI*2,true);			
+		ctx.closePath();			
+		ctx.fill();		
+	}		
+	Round.prototype.move = function(){			
+		this.x+=this.speedX;			
+		if(this.x>canvas.width-this.r){//				
+			this.speedX*=-1;			
+			this.x=this.r			
+		}else if(this.x<this.r){				
+			this.x=canvas.width-this.r			
+		}			
+		this.y+=this.speedY;			
+		if(this.y>canvas.height-this.r){			
+			this.speedY*=-1;				
+			this.y=this.r			
+		}else if(this.y<this.r){				
+			this.y=canvas.height-this.r			
+		}		
+	}		
 
-You can use the [editor on GitHub](https://github.com/SnowRain09/snowrain09.github.com/edit/master/index.md) to maintain and preview the content for your website in Markdown files.
-
-Whenever you commit to this repository, GitHub Pages will run [Jekyll](https://jekyllrb.com/) to rebuild the pages in your site, from the content in your Markdown files.
-
-### Markdown
-
-Markdown is a lightweight and easy-to-use syntax for styling your writing. It includes conventions for
-
-```markdown
-Syntax highlighted code block
-
-# Header 1
-## Header 2
-### Header 3
-
-- Bulleted
-- List
-
-1. Numbered
-2. List
-
-**Bold** and _Italic_ and `Code` text
-
-[Link](url) and ![Image](src)
-```
-
-For more details see [GitHub Flavored Markdown](https://guides.github.com/features/mastering-markdown/).
-
-### Jekyll Themes
-
-Your Pages site will use the layout and styles from the Jekyll theme you have selected in your [repository settings](https://github.com/SnowRain09/snowrain09.github.com/settings). The name of this theme is saved in the Jekyll `_config.yml` configuration file.
-
-### Support or Contact
-
-Having trouble with Pages? Check out our [documentation](https://help.github.com/categories/github-pages-basics/) or [contact support](https://github.com/contact) and we’ll help you sort it out.
+	//使用Round		
+	var allRound = [];		
+	function initRound(){			
+	//初始化30个圆形对象,放到数组中			
+		for(var i = 0 ; i<30;i++){				
+			var obj = new Round();				
+			obj.draw();				
+			obj.move();				
+			allRound.push(obj);			
+		}		
+	}		
+	initRound();		
+	var dxdy = []		
+	function roundMove(){			
+		ctx.clearRect(0,0,canvas.width,canvas.height);			
+		//遍历所有的圆形对象,让对象自己重绘,移动			
+		for (var i = 0 ;i <allRound.length;i++) {				
+			var round = allRound[i];				
+			round.draw();				
+			round.move();				
+			dxdy[i]={					
+				dx:round.x,					
+				dy:round.y				
+			};				
+			var dx = dxdy[i].dx;				
+			var dy =dxdy[i].dy;				
+			for (var j=0;j<i;j++) {					
+				var sx = dxdy[j].dx;					
+				var sy = dxdy[j].dy;					
+				l = Math.sqrt((dx-sx)*(dx-sx)+(dy-sy)*(dy-sy));					
+				var C = 1/l*7-0.009;					
+				var o = C > 0.03 ? 0.03 : C;						
+				ctx.strokeStyle = 'rgba(0,0,0,'+ o +')'					
+				/*console.log(l);			*/	
+				ctx.beginPath()				
+				ctx.lineWidth=2;				
+				ctx.moveTo(dxdy[i].dx,dxdy[i].dy)						
+				ctx.lineTo(dxdy[j].dx,dxdy[j].dy);					
+				ctx.closePath()					
+				ctx.stroke()				
+			}			
+		}			
+		window.requestAnimationFrame(roundMove)		
+	}		
+	roundMove();	
+	function login(){
+		var accounts = document.getElementById("accounts");
+		var password = document.getElementById("password");
+		if(accounts.value == ''){
+			alert("请填写账号")
+		}
+		else if(password.value == ''){
+			alert("请填写密码")
+		}
+		else if(accounts.value == "admin" && password.value == "admin"){
+			window.location.href = "index.html";
+		}else{
+			alert("请填写正确的账号密码");
+		}
+	}
+</script>
+</body>
+</html>
