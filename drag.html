@@ -1,0 +1,304 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>HTML5拖放排序</title>
+	<meta charset="utf-8">  
+    <meta name="viewport" content="width=device-width,initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no"/>
+    <link rel="stylesheet" href="https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+    <style type="text/css">
+    .container{
+    	margin-top: 50px;
+    	min-width: 1200px;
+    }
+    .f-right{
+    	float: right;
+    }
+    .xt_qyselect{
+        float: right;
+    }
+    .xt_warpper{
+    	width: 31%;
+    	min-height: 200px;
+    	display: inline-block;	
+    	margin-bottom: 40px;
+    	margin-left: 10px;
+    	margin-right: 13px;	
+    }
+    .xt_warpper:hover{
+    	box-shadow: 3px 3px 15px 0px rgba(0,0,0,0.7);
+    }
+    .xt_container{
+    	padding: 20px 20px 20px 20px;
+    	height: 100%;
+    	background-color: rgb(243,243,243);
+    }
+    .title{
+    	margin-bottom: 25px;
+    }
+    .xt_title{
+    	position: relative;
+    }
+    .xt_title h3{
+    	margin:0 ;
+    	font-size: 22px;
+    	display: inline-block;
+    }
+    .xt_title h5{
+    	margin:0 ;
+    	display: inline-block;
+    }
+    .xt_title .xhx{
+    	width: 100%;
+    	height: 0px;
+    	border-top: 2px solid #999;
+    }
+    .xt_time {
+    	margin-left: 25px;
+    	color: rgb(102,102,102);
+    }
+    /*环形图表*/
+    .xt_circle{
+    	text-align: center;
+    }
+  
+	/*×号*/
+	b {
+		display:inline-block; 
+		width:12px; 
+		height:2px; 
+		background:#000; 
+		font-size:0; 
+		line-height:0;
+		vertical-align:middle;
+		-webkit-transform: rotate(45deg);
+		position: absolute;
+		top: -10px;
+		right: -15px;
+		cursor:pointer;
+	}
+	b:after { 
+		content:'.'; 
+		display:block; 
+		width:12px; 
+		height:2px; 
+		background:#000;
+		-webkit-transform: rotate(-90deg);
+	}
+
+    .region_warpper{
+        text-align: center;
+        display: inline-block;
+    }
+    .region_warpper .region_container{
+        display: inline-block;
+        width: 33%;
+    }
+    .gauge {
+        width: 100px;
+        height: 100px;
+        margin: auto;
+    }
+    </style>
+</head>
+<body>
+<div class="container">
+	<div class="row">
+		<div class="title col-md-12">
+			<div class="btn-group col-md-4" role="group">
+				<button type="button" class="btn btn-default">全部</button>
+				<button type="button" class="btn btn-success">正常</button>
+				<button type="button" class="btn btn-warning">繁忙</button>
+				<button type="button" class="btn btn-danger">异常</button>
+			</div>
+			<div class="col-md-3 xt_qyselect">
+				<select class="form-control" id="xt_qyselect">
+					<option>全部</option>
+					<option>重庆</option>
+					<option>成都</option>
+					<option>贵阳</option>
+				</select>
+			</div>
+		</div>
+		<div class="col-md-12" id="msg_container">
+			<!--动态加载数据-->
+		</div>	
+	</div>
+</div>
+<script type="text/javascript" src="js/jquery.js"></script>
+<script type="text/javascript" src="js/justgage.js"></script>
+<script type="text/javascript" src="js/raphael-2.1.4.min.js"></script>
+<script type="text/javascript" src="js/Sortable.js"></script>
+<script type="text/javascript">
+var json=[
+    {
+    	id: 1,
+    	city: "重庆",
+    	cityId: 1,
+    	url: "http://www.qq.com",
+        xtName: "重庆人口家庭系统",
+        yxTime: "2天12小时",
+        cpu: 80,
+        nc: 70,
+        xc: 60,
+        type: 2
+    },
+    {
+    	id: 2,
+    	city: "成都",
+    	cityId: 2,
+    	url: "http://www.baidu.com",
+        xtName: "成都人口家庭系统",
+        yxTime: "4天23小时",
+        cpu: 20,
+        nc: 90,
+        xc: 70,
+        type: 0
+    },
+    {
+    	id: 4,
+    	city: "成都",
+    	cityId: 2,
+    	url: "http://www.baidu.com",
+        xtName: "成都人口家庭系统",
+        yxTime: "6天12小时",
+        cpu: 30,
+        nc: 55,
+        xc: 23,
+        type: 1
+    },
+    {
+    	id: 5,
+    	city: "成都",
+    	cityId: 2,
+    	url: "http://www.baidu.com",
+        xtName: "成都人口家庭系统",
+        yxTime: "6天12小时",
+        cpu: 36,
+        nc: 25,
+        xc: 93,
+        type: 1
+    },
+    {
+    	id: 3,
+    	city: "贵阳",
+    	cityId: 3,
+    	url: "http://www.baidu.com",
+        xtName: "贵阳人口家庭系统",
+        yxTime: "7天12小时",
+        cpu: 20,
+        nc: 90,
+        xc: 70,
+        type: 0
+    }
+];
+var jsonStr = eval(json);
+console.log(jsonStr);
+appendMessage(0);
+$("#xt_qyselect").change(function(){
+	console.log(this.value)
+	if(this.value == "全部"){
+		appendMessage(0);
+	}else if(this.value == "重庆"){
+		appendMessage(1);
+	}else if(this.value == "成都"){
+		appendMessage(2);
+	}else if(this.value == "贵阳"){
+		appendMessage(3);
+	}else{
+		alert("城市选择有误！")
+	}
+	
+})
+//绘制图表
+function appendMessage(cityType){
+	var msg = jsonStr;
+	var html = "";
+	$("#msg_container").empty();
+	for (var i = 0; i < msg.length; i++) {
+		if(cityType != 0 && msg[i].cityId != cityType ) {
+			continue;
+		}
+		html +=' <div class="xt_warpper"><div class="xt_container"><div class="xt_title"><b></b><div>';
+		html +='<h3>'+msg[i].xtName+'</h3>';
+		html +='<span class="xt_time">'+msg[i].yxTime+'</span>';
+		if(msg[i].type == 1){
+			html +='<span class="btn-sm btn-success f-right" style="display:inline-block">正常</span>';
+		}else if(msg[i].type == 0){
+			html +='<span class="btn-sm btn-danger f-right" style="display:inline-block">异常</span>';
+		}else{
+			html +='<span class="btn-sm btn-warning f-right" style="display:inline-block">繁忙</span>';
+		}
+		
+		html +='</div><div style="margin:8px 0">';
+		html +='<h5>'+msg[i].url+'</h5>';
+		html +='<span class="f-right">配置</span></div>';
+		html +='<div class="xhx"></div><div class="xt_circle">';
+        html += '<div class="region_warpper">  <div class="region_container">';
+        html += '<div id="cpu'+msg[i].id+'" class="gauge" ></div><span>cpu</span></div>';
+        html += '<div class="region_container">';
+        html += '<div id="nc'+msg[i].id+'" class="gauge" ></div><span>内存</span></div>';
+        html += '<div class="region_container">';
+        html += '<div id="xc'+msg[i].id+'" class="gauge" ></div><span>线程</span></div></div>';
+		html +='</div></div></div></div>';
+		$("#msg_container").append(html);
+		html = "";
+        initJustGage(msg[i].id,msg[i].cpu,msg[i].nc,msg[i].xc)	
+	};
+	$("b").on("click",function(){
+		$(this).parents(".xt_warpper").fadeOut();
+	})
+}
+
+
+//绘制圆环图
+function initJustGage (id,cpu,nc,xc){
+    var dflt = {
+    min : 0,
+    max : 100,
+    donut : true,
+    gaugeWidthScale : 0.6,
+    counter : true,
+    hideInnerShadow : true
+    }
+    var cpuId = "cpu" + id;
+    var ncId = "nc" + id;
+    var xcId = "xc" + id;
+    var region_gg01 = new JustGage({
+        id : cpuId,
+        value: cpu,
+        defaults : dflt
+    });
+
+    var region_gg02 = new JustGage({
+        id : ncId,
+        value: nc,
+        defaults : dflt
+    });
+    var region_gg03 = new JustGage({
+        id : xcId,
+        value: xc,
+        defaults : dflt
+    });
+       
+}
+//拖动函数
+    (function (){
+        Sortable.create(msg_container, {
+            group: "words",
+            animation: 150,
+            store: {
+                get: function (sortable) {
+                    var order = localStorage.getItem(sortable.options.group);
+                    return order ? order.split('|') : [];
+                },
+                set: function (sortable) {
+                    var order = sortable.toArray();
+                    localStorage.setItem(sortable.options.group, order.join('|'));
+                }
+            },
+        });
+
+    })();
+</script>
+</body>
+</html>
