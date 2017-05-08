@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width,initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no"/>
+    <link rel="stylesheet" type="text/css" href="css/mui.min.css">
+    <style type="text/css">
+    .fwnr{
+    	padding: 10px 15px;
+    	line-height: 2;
+    	font-size: 14px;
+    }
+    .mui-icon-star{color: #B5B5B5;font-size: 30px;}
+	.mui-icon-star-filled{color: #FFB400;font-size: 30px;} 
+	ul{padding: 10px 0px;}
+	li{display: -webkit-box;width: 100%;padding: 0 10px;} 
+	li a{-webkit-box-flex: 1;display: block;font-size: 14px;line-height: 30px;color: #000;}
+	li div{-webkit-box-flex: 2;text-align: right;}
+	#info{padding: 20px 10px;}
+	.hzpj{
+		padding: 10px 15px;
+	}
+	.hzpj button{
+		margin: 5px;
+	}
+	.add_pl{
+		text-align: center;
+		width: 100%;
+
+	}
+    </style>
+</head>
+<body>
+<div class="mui-card">
+	<div class="fwnr">
+		<div>服务团队：中医院</div>
+		<div>服务项目：体检</div>
+		<div>服务时间：2017.5.4</div>
+	</div>
+</div>
+<div class="mui-card">
+	<div class="mui-content">
+		<ul class="mui-table-view" style="margin-bottom: 15px;">
+			<li class="star-li">
+				<a>综合评价</a>
+				<div class="icons">
+					<i data-index="1" class="mui-icon mui-icon-star"></i>
+					<i data-index="2" class="mui-icon mui-icon-star"></i>
+					<i data-index="3" class="mui-icon mui-icon-star"></i>
+					<i data-index="4" class="mui-icon mui-icon-star"></i>
+					<i data-index="5" class="mui-icon mui-icon-star"></i>
+				</div>
+			</li>
+			<li class="star-li">
+				<a>医生就医质量</a>
+				<div class="icons">
+					<i data-index="1" class="mui-icon mui-icon-star"></i>
+					<i data-index="2" class="mui-icon mui-icon-star"></i>
+					<i data-index="3" class="mui-icon mui-icon-star"></i>
+					<i data-index="4" class="mui-icon mui-icon-star"></i>
+					<i data-index="5" class="mui-icon mui-icon-star"></i>
+				</div>
+			</li>
+			<li class="star-li">
+				<a>医生服务态度</a>
+				<div class="icons">
+					<i data-index="1" class="mui-icon mui-icon-star"></i>
+					<i data-index="2" class="mui-icon mui-icon-star"></i>
+					<i data-index="3" class="mui-icon mui-icon-star"></i>
+					<i data-index="4" class="mui-icon mui-icon-star"></i>
+					<i data-index="5" class="mui-icon mui-icon-star"></i>
+				</div>
+			</li>
+		</ul>
+	</div>
+</div>
+<div class="mui-card">
+	<div class="mui-card-header">
+		<span>患者评价</span>
+	</div>
+	<div class="mui-card-content hzpj">
+		<button type="button" class="mui-btn mui-btn-primary mui-btn-outlined" value="态度良好">态度良好</button>
+		<button type="button" class="mui-btn mui-btn-primary mui-btn-outlined" value="服务热情">服务热情</button>
+		<button type="button" class="mui-btn mui-btn-primary mui-btn-outlined" value="药到病除">药到病除</button>
+		<button type="button" class="mui-btn mui-btn-danger mui-btn-outlined" value="态度差">态度差</button>
+		<button type="button" class="mui-btn mui-btn-danger mui-btn-outlined" value="效果一般">效果一般</button>
+	</div>
+	<form class="mui-input-group mui-card">
+	    <div class="mui-input-row" style="height:100%;border: 1px solid #999;">
+	    	<textarea  placeholder="请输入回复内容" rows="4"></textarea>
+	    </div>
+	</form>
+	<div class="mui-card-footer">
+		<div class="add_pl">
+			<button id ="uploadPj" type="button" class="uploadPj mui-btn mui-btn-primary">提交评价</button>
+		</div>
+	</div>
+</div>
+</body>
+<script type="text/javascript" src="js/mui.min.js"></script>
+<script type="text/javascript">
+	mui.init();
+	var json = {};
+	json.zhpj = '';
+	json.jyzl = '';
+	json.fwtd = ''; 
+	json.pjxx = '';
+	mui('.icons').on('click','i',function(){
+		var index = parseInt(this.getAttribute("data-index"));
+		var parent = this.parentNode;
+		var children = parent.children;
+		if(this.classList.contains("mui-icon-star")){
+			for(var i=0;i<index;i++){
+				children[i].classList.remove('mui-icon-star');
+				children[i].classList.add('mui-icon-star-filled');
+			}
+		}else{
+			for (var i = index; i < 5; i++) {
+				children[i].classList.add('mui-icon-star')
+				children[i].classList.remove('mui-icon-star-filled')
+			}
+		}
+		var text = parent.previousElementSibling.innerText
+		storagePf(text,index);
+
+	})
+	//获取评分
+	function storagePf(text,index){
+		if (text == "综合评价") {
+			json.zhpj = index;
+			return json.zhpj;
+		}else if(text == "医生就医质量"){
+			json.jyzl = index;
+			return json.jyzl;
+		}else if(text == "医生服务态度"){
+			json.fwtd = index;
+			return json.fwtd;
+		}
+	}
+	//给文本框添加问题
+	mui('.hzpj').on('click','button',function(){
+		var text = this.value;
+		mui('textarea')[0].value += text;
+		mui('textarea')[0].value += " ";
+	})	
+	//提交数据
+	mui('.add_pl').on('click','button',function(){
+		json.pjxx = mui('textarea')[0].value;
+		if(json.zhpj == '' || json.jyzl == '' || json.fwtd == ''|| json.pjxx == ''){
+			mui.alert('请完成评价','提示',['确定'],null,'div') 
+		}else{
+			mui.toast('评价成功',{ duration:'short', type:'div' }) 
+		}
+		console.log(json);
+	})
+</script>
+</html>
