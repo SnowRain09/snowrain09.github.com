@@ -142,6 +142,65 @@
 			color: #333;
 			background-color: #fff;
 		}
+		.page3 .coding{
+			width: 1000px;
+			margin: 0 auto;
+		}
+		.works_warpper{
+			width: 224px;
+			margin-right: 20px;
+			float: left;
+		}
+		.works_title{
+			height: 48px;
+			line-height: 48px;
+   			padding: 0 20px;
+   			color: #fff;
+   			background-color: rgb(62,138,209);
+   			border-radius: 5px 5px 0 0 ;
+		} 
+		.works_content{
+			height: 180px;
+			overflow: hidden;
+		}
+		.works_content img{
+			width: 224px;
+			height: 180px;
+			border-radius: 0 0 5px 5px;
+			cursor: pointer;
+		}
+		.works_content img:hover{
+			animation: largen 2s;
+			-moz-animation: largen 2s; 
+			-webkit-animation: largen 2s; 
+			-o-animation: largen 2s; 
+		}
+		@keyframes largen{
+			0% {-webkit-transform:scale(1);}
+			100% {-webkit-transform:scale(1.2);}
+		}
+		@-webkit-keyframes lefteaseinAnimate{
+		    0% {-webkit-transform:scale(1);}
+			100% {-webkit-transform:scale(1.2);} 
+		}
+		@-o-keyframes lefteaseinAnimate{
+		    0% {-webkit-transform:scale(1);}
+			100% {-webkit-transform:scale(1.2);} 
+		}
+		@-ms-keyframes lefteaseinAnimate{
+		    0% {-webkit-transform:scale(1);}
+			100% {-webkit-transform:scale(1.2);}  
+		}
+		@-moz-keyframes lefteaseinAnimate{
+		    0% {-webkit-transform:scale(1);}
+			100% {-webkit-transform:scale(1.2);} 
+		}
+		.page4 div{
+			font-size: 35px;
+			line-height: 2;
+			margin: 0 auto;
+			color: #fff;
+		}
 	</style>
 </head>
 <body>
@@ -202,13 +261,44 @@
 			</div>
 		</div>
 		<div class="page3 section section3">
+			<div class="coding">
+				<!-- <div id="code"></div> -->
+				<div class="works_warpper">
+					<div class="works_container">
+						<div class="works_title">拖拽排序及图表页面</div>
+						<div class="works_content">
+							<a href="drag.html"><img src="images/drap.png"></a>
+						</div>
+					</div>
+				</div>
+				<div class="works_warpper">
+					<div class="works_container">
+						<div class="works_title">基于mui的评价页面</div>
+						<div class="works_content">
+							<a href="mui-score.html"><img src="images/mui-score.png"></a>
+						</div>
+					</div>
+				</div>
+				<div class="works_warpper">
+					<div class="works_container">
+						<div class="works_title">仿知乎登录页面</div>
+						<div class="works_content">
+							<a href="login.html"><img src="images/login.png"></a>
+						</div>
+					</div>
+				</div>
+			</div>
 		</div> 
 		<div class="page4 section section4">
+			<div>快把我收到碗里吧</div>
+			<div>437711739@qq.com</div>
+			<div>18380463039</div>
 		</div> 
 	</div>
 </div>
 <script type="text/javascript" src="js/jquery.js"></script>
 <script type="text/javascript" src="js/jquery.fullpage.js"></script>
+<script type="text/javascript" src="js/jquery.qrcode.min.js"></script>
 <script type="text/javascript">
     $(function(){
 		$('#main').fullpage({
@@ -217,6 +307,12 @@
 	function moveDrap(){
 		window.location.href = "drag.html";
 	}
+	$("#code").qrcode({ 
+	    render: "canvans", //table方式 
+	    width: 200, //宽度 
+	    height:200, //高度 
+	    text: "www.helloweba.com" //任意内容 
+	}); 
 </script>
 </body>
 </html>
