@@ -19,7 +19,7 @@
 		.nav_title{float: left;}
 		.nav_content{float: right; margin-top: 15px;}
 		.nav_content ul {list-style: none;}
-		.nav_content li{
+		nav li{
 			float: left;
 			margin-right: 35px;
 			font-size: 17px;
@@ -29,11 +29,11 @@
 			cursor: pointer;
 			border:1px solid #fff;
 		}
-		.nav_content li:hover{
+		.li_hover{
 			color: #66ccff;
 			border:1px solid #66ccff;
 		}
-		.nav_content li:first-child{
+		.li_active{
 			color: #fff;
 			background-color: #66ccff;
 			border:1px solid #66ccff;
@@ -302,8 +302,28 @@
 <script type="text/javascript">
     $(function(){
 		$('#main').fullpage({
+			onLeave:function(index,nextIndex,direction){
+				$('.nav_content').find('li').eq(index - 1).removeClass('li_active');
+				$('.nav_content').find('li').eq(nextIndex - 1).addClass('li_active');
+			}
 		});
 	});
+	(function(){
+		var li = $('.nav_content').find('li');
+		li.eq(0).addClass('li_active');
+		li.on('click',function(){
+			var index = li.index($(this))+1;
+			li.removeClass('li_active');
+			$(this).addClass('li_active');
+			$.fn.fullpage.moveTo(index);
+		})
+		li.hover(function(){
+			li.removeClass('li_hover');
+			$(this).addClass('li_hover');
+		})
+	})();
+		
+	/*$.fn.fullpage.moveTo(4);*/
 	// $("#code").qrcode({ 
 	//     render: "canvans", //table方式 
 	//     width: 200, //宽度 
