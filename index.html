@@ -317,9 +317,11 @@
 			$(this).addClass('li_active');
 			$.fn.fullpage.moveTo(index);
 		})
-		li.hover(function(){
-			li.removeClass('li_hover');
+		li.mouseover(function(){
 			$(this).addClass('li_hover');
+		})
+		li.mouseout(function(){
+			$(this).removeClass('li_hover');
 		})
 	})();
 		

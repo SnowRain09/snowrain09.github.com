@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>商城</title>
+	<link rel="stylesheet" href="https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+	<style type="text/css">
+		.container{
+			margin: 0 auto;
+		}
+		.table{
+			text-align: center;
+		}
+		.glyphicon{
+			margin: 5px;
+		}
+		input[name="number"]{
+			width: 50%;
+			text-align: center;
+		}
+	</style>
+</head>
+<body>
+	<div class="row container" id="app">
+		<div class="col-md-12">
+			<form>
+				<table class="table table-hover">
+					<tr>
+						<td class="col-md-1">商品序号</td>
+						<td class="col-md-3">商品名称</td>
+						<td class="col-md-2">商品单价</td>
+						<td class="col-md-2">商品数量</td>
+						<td class="col-md-3">商品总价</td>
+						<td class="col-md-1">操作</td>
+					</tr>
+					<tr v-for="(item, index) in items" >
+						<td v-text="item.id"></td>
+						<td v-text="item.name"></td>
+						<td v-text="item.price + '元'"></td>
+						<td>					
+							<i class="glyphicon glyphicon-minus" v-on:click="item.number--"></i>
+							<input name="number" v-model="item.number">
+							<i class="glyphicon glyphicon-plus" v-on:click="item.number++"></i>
+						</td>
+						<td>{{totalPrice(index)}}</td>
+						<td><button type="button" class="btn btn-primary" v-on:click="deletaShop(index)">删除</button></td>
+					</tr>
+				</table>
+				<button type="button" class="btn btn-primary" v-on:click="sumPrice">计算总价格</button>
+			</form>
+		</div>
+	</div>
+<script type="text/javascript" src="vue.min.js"></script>
+<script type="text/javascript">
+	var vm = new Vue({
+		el:'#app',
+		data:{
+			items:[
+				{
+					'id': 1,
+					'name' : '可乐',
+					'price' : 3,
+					'number' : 1,
+					'total' : 5
+				},
+				{
+					'id': 2,
+					'name' : '泡面',
+					'price' : 5,
+					'number' : 1,
+					'total' : 5
+				},
+				{
+					'id': 3,
+					'name' : '辣条',
+					'price' : 15,
+					'number' : 2,
+					'total' : 30
+				},
+				{
+					'id': 4,
+					'name' : '鸡腿',
+					'price' : 8,
+					'number' : 1,
+					'total' : 8
+				}
+			],
+			sum: 0
+			
+		},
+		methods:{
+			sumPrice:function(){
+				this.sum = 0;
+				for (var i = 0; i < this.items.length; i++) {
+					this.sum += this.items[i].total;
+				}
+				alert("总价格为" + this.sum + "元");
+			},
+			deletaShop:function(index){
+				this.items.splice(index,1);
+			},
+			totalPrice:function(index){
+				let i = index;
+				this.items[i].total = this.items[i].price * this.items[i].number;
+				return this.items[i].total
+			}
+		},
+		watch:{
+
+		},	
+
+	})
+</script>
+</body>
+</html>
