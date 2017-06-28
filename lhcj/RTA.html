@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>贵阳清镇市工商部门</title>
+  <meta charset="utf-8">
+  <link rel="stylesheet" type="text/css" href="css/bootstrap.css">
+  <style type="text/css">
+    body {
+      background: url(image/bg1.png) no-repeat center center;
+      background-position: center;
+      background-size: cover;
+      border-bottom: 1px solid #fff;
+    }
+    .nav { padding: 5px 20px; border-bottom: 1px solid #eee; line-height: 30px;}
+    .footer {
+      width: 100%;
+      text-align: center;
+      margin-top: 50px;
+      margin-bottom: 20px;
+      font-size: 12px;
+      color: #999;
+      line-height: 20px;
+    }
+    .content {
+      margin: 0 auto;
+      width: 800px;
+    }
+    .cont_logo{
+      margin: 0 auto;
+      margin-left: 250px;
+    }
+    .search_box {
+      width: 500px;
+      margin-top: 30px;
+      margin-left: 150px;
+    }
+    .search_box input {
+      border: 1px solid red;
+    }
+    .search_box .input-group-addon{
+      color: #fff;
+      background-color: red;
+      border: 1px solid red;
+      cursor: pointer;
+    }
+    .UE_box{
+      margin-top: 30px;
+      border: 1px solid #eee;
+      padding: 10px 40px;
+      overflow: hidden;
+      min-height: 180px;
+    }
+    .UE_title {
+      text-align: center;
+      font-size: 18px;
+    }
+    .UElist_content {border-bottom: 1px solid #eee;padding: 10px 0px;}
+    .UElist_content span {
+      font-size: 12px;
+      margin-right: 20px;
+      line-height: 25px;
+    }
+    .UE_company{
+      font-size: 16px;
+      line-height: 2;
+    }
+    #showMore {
+      text-align: center;
+      margin-top: 10px;
+      color: #999;
+      cursor: pointer;
+    }
+    .list_button{
+      float: right;
+      position: relative;
+      bottom: 40px;
+    }
+    .list_button a {
+      width: 80px;
+      margin-top: 20px;
+      background-color: #Fff;
+      border: 1px solid #66ccff;
+      padding: 3px 8px;
+      color: #66ccff;
+    }
+    .list_button a:hover {color: #66ccff;}
+    .clr_red{color: red;}
+    .right {float: right;}
+    .left {float: left;}
+    .nav .right {position: relative;}
+    .nav .left {margin-left: 15px; margin-right:15px;}
+    .border {width:1px;height: 16px;background-color: #999;float: left;position: relative;top:7px;border-radius: 5px;}
+  </style>
+</head>
+<body>
+  <div class="nav">
+    <img src="image/logo_small.png" alt="logo">
+    <div class="right">
+      <div class="left clr_red">
+        贵阳市交通管理局
+        <img src="image/home_ico_unfold.png" alt="icon">
+      </div>
+      <div class="border"></div>
+      <div class="left">部门:信息中心</div>
+      <div class="border"></div>
+      <div class="left">姓名:陈赫</div>
+      <div class="border"></div>
+      <div class="left">CA编号:7923478</div>
+    </div>
+  </div>
+  <div class="content" id="content">
+    <img class="cont_logo" src="image/logo.png">
+    <div class="search_box">
+      <div class="input-group">
+        <input type="text" class="form-control" id="exampleInputAmount" placeholder="输入查询企业的名称或组织代码">
+        <div class="input-group-addon">搜索</div>
+      </div>
+    </div>
+    <div class="UE_box" id="UE_box">
+      <div class="UE_title">身份链联合惩戒平台-"失信被执行人"查询</div>
+      <div style="text-align: center; font-size: 16px;">惩戒状态：<span style="color: red">执行中</span></div>
+      <div class="UE_list">
+        <div class="UElist_content">
+          <div class="UE_company">失信被执行人：贵州正翔物流运输有限公司</div>
+          <span>执行案由：借款合同纠纷</span>
+          <span>更新时间：2017-06-22</span>
+          <span>身份链存证：D65IYEK1656...</span>
+          <br />
+          <span>惩戒状态：执行中</span>
+          <span>惩戒措施：对其名下所以车辆实施扣押</span>
+          <div class="list_button">
+            <a class="btn" href="http://116.62.184.142:7070/#/degreecj/d26565f839d18a0061d6fb7d6e5134143657bd2b1ec78f3f987aa42f932cd5b9">执行存证</a>
+          </div>
+        </div>
+        
+      </div>
+    </div>
+    <div id="showMore">
+      滚动查看更多
+      <div><img src="image/home_ico_more.png" alt="showMore"></div>
+    </div>
+  </div>
+  <div class="footer">
+    <div>联合惩戒管理平台使用必读 川CP证030173号</div>
+    <div>
+      <img src="image/home_ico_pbs.png" alt="icon">
+      <span>川公网安备1200006000009</span>
+    </div>
+  </div>
+</body>
+<script type="text/javascript" src="js/jquery.min.js"></script>
+<script type="text/javascript">
+  $(function(){
+    var windowH = $(window).height(); //浏览器当前窗口可视区域高度
+    var boxH = windowH * 0.85 - 420 + 'px';
+    var ctH = windowH * 0.15 + 'px';
+    $('body')[0].style.height = windowH + 'px';
+    $('#UE_box').css('height',boxH);
+    $('#content').css('marginTop', ctH)
+    $('#showMore').css('visibility', 'hidden'); //暂时隐藏显示更多
+    function showMore() {
+      $('body')[0].style.height = 'auto';
+      $('#UE_box').css('height', 'auto');
+      $('#showMore').hide();
+    }
+    $('#showMore').click(function(){
+       showMore()
+    })
+    $(window).scroll(function() {showMore()});
+  })
+</script>
+</html>

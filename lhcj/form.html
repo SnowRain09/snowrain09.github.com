@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>form</title>
+  <meta charset="utf-8">
+  <link rel="stylesheet" type="text/css" href="css/bootstrap.css">
+  <style type="text/css">
+    body {
+      background: url(image/bg1.png) no-repeat center center;
+      background-position: center;
+      background-size: cover;
+      border-bottom: 1px solid #fff;
+    }
+    .nav { padding: 5px 20px; border-bottom: 1px solid #eee;line-height: 30px;}
+    .footer {
+      width: 100%;
+      text-align: center;
+      margin-top: 50px;
+      margin-bottom: 20px;
+      font-size: 12px;
+      color: #999;
+      line-height: 20px;
+    }
+    .content {
+      margin: 50px auto;
+      width: 1000px;
+      background-color: #fff;
+      border-top: 4px solid red;
+      padding: 25px 15px;
+    }
+    .content .btn{
+      float: left;
+      margin-right: 20px;
+      width: 100px;
+      margin-bottom: 10px;
+      background-color: #fff;
+      border: 1px solid #aaa;
+      padding: 3px 8px;
+    }
+    .clear {clear: both;}
+    .form_title{
+      font-size: 18px;
+      text-align: center;
+      padding: 10px 10px;
+    }
+    .form_box table{
+      text-align: center;
+      color: #333;
+    }
+    .form_box .table td{
+      word-break: break-all;
+      vertical-align: middle;
+    }
+    .pointer{cursor: pointer;}
+    .table_title{
+      border-left: 3px solid #66ccff;
+      padding-left: 10px;
+      margin-bottom: 20px;
+      font-size: 18px;
+    }
+    .clr_red{color: red;}
+    .right {float: right;}
+    .left {float: left;}
+    .nav .right {position: relative;}
+    .nav .left {margin-left: 15px; margin-right:15px;}
+    .border {width:1px;height: 16px;background-color: #999;float: left;position: relative;top:7px;border-radius: 5px;}
+  </style>
+</head>
+<body>
+  <div class="nav">
+    <img src="image/logo_small.png" alt="logo">
+    <div class="right">
+      <div class="left clr_red">
+        贵阳清政市人民法院
+        <img src="image/home_ico_unfold.png" alt="icon">
+      </div>
+      <div class="border"></div>
+      <div class="left">部门:执行局</div>
+      <div class="border"></div>
+      <div class="left">姓名:李勇</div>
+      <div class="border"></div>
+      <div class="left">CA编号:7923499</div>
+    </div>
+  </div>
+  <div class="content row">
+    <button class="btn" id="goBack">返回上一级</button>
+    <button class="btn" style="color: #66ccff;border: 1px solid #66ccff">下条失信信息</button>
+    <div class="clear"></div>
+    <div class="form_title">企业失信行为及惩戒一览表</div>
+    <div class="col-md-12 form_box">
+      <table class="table table-bordered" style="background-color: #eee;">
+        <tr>
+          <td width="33%">失信被执行人：贵阳正翔物流运输有限公司</td>
+          <td width="33%">失信次数：1次</td>
+          <td width="33%">所在地区：贵阳市</td>
+        </tr>
+      </table>
+      <div class="table_title">立案信息</div>
+      <table class="table table-bordered">
+        <tr>
+          <td width="25%">执行案由</td>
+          <td width="25%">借款合同纠纷</td>
+          <td width="25%">原告名称</td>
+          <td width="25%">货车帮</td>
+        </tr>
+        <tr>
+          <td>案号</td>
+          <td>｛2016｝黔016执128号</td>
+          <td>立案时间</td>
+          <td>2016-11-27</td>
+        </tr>
+        <tr>
+          <td>组织机构代码</td>
+          <td>915201037854582218</td>
+          <td>法定代表人</td>
+          <td>朱正华</td>
+        </tr>
+        <tr>
+          <td>法律文书确定的义务</td>
+          <td colspan="3">
+          一、被告朱正华、贵州正翔物流运输有限公司归还原告货车帮借款人民币260000元,并支付相应利息(利息按照中国人民银行同期同类贷款利率计算自2013年5月1日起至付清之日止)。二、上述款项被告朱正华、贵州正翔物流运输有限公司于2014年11月30日前支付60000元及利息,2015年3月31日前支付200000元及利息,如被告朱正华、贵州正翔物流运输有限公司对任何一期借款逾期支付,则原告陈高华有权对全部金额申请强制执行。案件受理费6636元,减半收取3318元,由原告陈高华负担1300元,被告朱正华、贵州正翔物流运输有限公司负担2018元。
+          </td>
+        </tr>
+        <tr>
+          <td>履行情况</td>
+          <td>全部未履行</td>
+          <td>执行依据文号</td>
+          <td>｛2016｝黔016执128号</td>
+        </tr>
+        <tr>
+          <td>失信行为情形</td>
+          <td>其具有履行能力而拒不履行生效法律文书确定义务</td>
+          <td>纳入时间</td>
+          <td>2016-11-27</td>
+        </tr>
+        <tr>
+          <td>附件下载</td>
+          <td>
+            <img src="image/home_ico_doc.png" alt="world">
+            <div>法院判决书<img class="pointer" src="image/home_ico_download.png" alt="download"></div>
+            <img src="image/home_ico_doc.png" alt="world">
+            <div>纳入"失信被执行名单"...<img class="pointer" src="image/home_ico_download.png" alt="download"></div>
+          </td>
+          <td>执行法院</td>
+          <td>贵阳清镇市人民法院</td>
+        </tr>
+        <tr>
+          <td>身份链存证</td>
+          <td><a href="http://116.62.184.142:7070/#/degreecj/d26565f839d18a0061d6fb7d6e5134143657bd2b1ec78f3f987aa42f932cd5b6">d26565f839d18a0061d6fb7d6e5134143657bd2b1ec78f3f987aa42f932cd5b6</a></td>
+          <td>承办法官</td>
+          <td>执行局-杨可可</td>
+        </tr>
+      </table>
+      <div class="table_title">惩戒信息</div>
+      <table class="table table-bordered">
+        <tr>
+          <td width="25%">惩戒部门</td>
+          <td width="25%">贵阳市清镇市工商行政管理局</td>
+          <td width="25%">惩戒措施</td>
+          <td width="25%">限制在工商行政管理部门进行企业注册登记及更新</td>
+        </tr>
+        <tr>
+          <td>惩戒期限</td>
+          <td>6个月</td>
+          <td>惩戒执行状态</td>
+          <td>执行中</td>
+        </tr>
+        <tr>
+          <td>惩戒启动时间</td>
+          <td>2017-06-01</td>
+          <td>惩戒剩余天数</td>
+          <td>153</td>
+        </tr>
+        <tr>
+          <td>执行操作人</td>
+          <td>王木</td>
+          <td>身份证链存</td>
+          <td><a href="http://116.62.184.142:7070/#/degreecj/d26565f839d18a0061d6fb7d6e5134143657bd2b1ec78f3f987aa42f932cd5b7">d26565f839d18a0061d6fb7d6e5134143657bd2b1ec78f3f987aa42f932cd5b7</a></td>
+        </tr>
+      </table>
+      <table class="table table-bordered">
+        <tr>
+          <td width="25%">惩戒部门</td>
+          <td width="25%">贵阳市清镇市交通管理局</td>
+          <td width="25%">惩戒措施</td>
+          <td width="25%">对其名下所有车辆进行扣押</td>
+        </tr>
+        <tr>
+          <td>惩戒期限</td>
+          <td>6个月</td>
+          <td>惩戒执行状态</td>
+          <td>执行中</td>
+        </tr>
+        <tr>
+          <td>惩戒启动时间</td>
+          <td>2016-06-18</td>
+          <td>惩戒剩余天数</td>
+          <td>153</td>
+        </tr>
+        <tr>
+          <td>执行操作人</td>
+          <td>陈焱</td>
+          <td>身份链存证</td>
+          <td><a href="http://116.62.184.142:7070/#/degreecj/d26565f839d18a0061d6fb7d6e5134143657bd2b1ec78f3f987aa42f932cd5b9">d26565f839d18a0061d6fb7d6e5134143657bd2b1ec78f3f987aa42f932cd5b9</a></td>
+        </tr>
+      </table>
+    </div>
+  </div>
+</body>
+<script type="text/javascript" src="js/jquery.min.js"></script>
+<script type="text/javascript">
+  $(function(){
+    //返回上一级
+    $('#goBack').click(function(){
+      window.location.href = 'courtIndex.html';
+    })
+  })
+</script>
+</html>
