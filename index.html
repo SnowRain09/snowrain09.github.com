@@ -300,7 +300,10 @@
 <script type="text/javascript" src="js/jquery.fullpage.js"></script>
 <script type="text/javascript" src="js/jquery.qrcode.min.js"></script>
 <script type="text/javascript">
-    $(function(){
+  $(function(){
+  	if(!sessionStorage.getItem('userName')){
+  		window.location.href = 'login.html'
+  	}
 		$('#main').fullpage({
 			onLeave:function(index,nextIndex,direction){
 				$('.nav_content').find('li').eq(index - 1).removeClass('li_active');
