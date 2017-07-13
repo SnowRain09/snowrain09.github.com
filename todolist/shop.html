@@ -18,6 +18,9 @@
 			width: 50%;
 			text-align: center;
 		}
+		.floatR{
+			float: right;
+		}
 	</style>
 </head>
 <body>
@@ -34,7 +37,10 @@
 						<td class="col-md-1">操作</td>
 					</tr>
 					<tr v-for="(item, index) in items" >
-						<td v-text="item.id"></td>
+						<td>
+							<input type="checkbox" name="">
+							<span v-text="item.id"></span>
+						</td>
 						<td v-text="item.name"></td>
 						<td v-text="item.price + '元'"></td>
 						<td>					
@@ -46,7 +52,11 @@
 						<td><button type="button" class="btn btn-primary" v-on:click="deletaShop(index)">删除</button></td>
 					</tr>
 				</table>
-				<button type="button" class="btn btn-primary" v-on:click="sumPrice">计算总价格</button>
+				<div class="floatR">
+					<span>总金额为</span><span v-text="sum + '元'"></span>
+					<button type="button" class="btn btn-primary" v-on:click="sumPrice">结算</button>
+				</div>
+				
 			</form>
 		</div>
 	</div>
@@ -94,7 +104,7 @@
 				for (var i = 0; i < this.items.length; i++) {
 					this.sum += this.items[i].total;
 				}
-				alert("总价格为" + this.sum + "元");
+				alert("您总共需要支付" + this.sum + "元");
 			},
 			deletaShop:function(index){
 				this.items.splice(index,1);
@@ -106,7 +116,15 @@
 			}
 		},
 		watch:{
-
+			items: {
+				handler: function (val, oldVal) {
+					this.sum = 0;
+					for (var i = 0; i < this.items.length; i++) {
+						this.sum += this.items[i].total;
+					}
+				},
+				deep: true
+		    }
 		},	
 
 	})
