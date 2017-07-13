@@ -90,6 +90,7 @@
     .nav .right {position: relative;}
     .nav .left {margin-left: 15px; margin-right:15px;}
     .border {width:1px;height: 16px;background-color: #999;float: left;position: relative;top:7px;border-radius: 5px;}
+    .UE_box select{display: inline-block; width: 100px;}
   </style>
 </head>
 <body>
@@ -118,7 +119,14 @@
     </div>
     <div class="UE_box" id="UE_box">
       <div class="UE_title">身份链联合惩戒平台-"失信被执行人"查询</div>
-      <div style="text-align: center; font-size: 16px;">惩戒状态：<span style="color: red">执行中</span></div>
+      <div style="text-align: center; font-size: 16px;">
+        惩戒状态：
+        <!-- <span style="color: red">执行中</span> -->
+        <select class="form-control">
+          <option>执行中</option>
+          <option>未执行</option>
+        </select>
+      </div>
       <div class="UE_list">
         <div class="UElist_content">
           <div class="UE_company">失信被执行人：贵州正翔物流运输有限公司</div>
@@ -167,6 +175,7 @@
        showMore()
     })
     $(window).scroll(function() {showMore()});
+    changeColor();
   })
 </script>
 </html>

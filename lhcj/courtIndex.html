@@ -76,6 +76,7 @@
     .nav .right {position: relative;}
     .nav .left {margin-left: 15px; margin-right:15px;}
     .border {width:1px;height: 16px;background-color: #999;float: left;position: relative;top:7px;border-radius: 5px;}
+    .UE_box select{display: inline-block; width: 100px;}
   </style>
 </head>
 <body>
@@ -104,7 +105,18 @@
     </div>
     <div class="UE_box" id="UE_box">
       <div class="UE_title">"失信被惩戒名录"查询</div>
-      <div style="text-align: center; font-size: 16px;">地区选择：<span style="color: red">贵阳市</span></div>
+      <div style="text-align: center; font-size: 16px;">
+        地区选择：
+        <!-- <span style="color: red">贵阳市</span> -->
+        <select class="form-control">
+          <option>贵阳市</option>
+          <option>遵义市</option>
+          <option>六盘水市</option>
+          <option>安顺市</option>
+          <option>铜仁市</option>
+          <option>毕节市</option>
+        </select>
+      </div>
       <div class="UE_list">
         <div class="UElist_content">
           <div class="UE_company">贵阳德育有限公司</div>
