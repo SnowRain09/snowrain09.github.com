@@ -84,12 +84,31 @@
       color: #66ccff;
     }
     .list_button a:hover {color: #66ccff;}
-    .clr_red{color: red;}
+    .clr_red{color: red; cursor: pointer;}
     .right {float: right;}
     .left {float: left;}
     .nav .right {position: relative;}
     .nav .left {margin-left: 15px; margin-right:15px;}
     .border {width:1px;height: 16px;background-color: #999;float: left;position: relative;top:7px;border-radius: 5px;}
+    .returnHome {
+      display: none;
+      padding: 6px 12px;
+      margin-bottom: 0;
+      font-size: 14px;
+      font-weight: normal;
+      line-height: 1.42857143;
+      text-align: center;
+      white-space: nowrap;
+      vertical-align: middle;
+      position: absolute;
+      top: 35px;
+      left: 35px;
+      color: red;
+    }
+    .returnHome:hover{
+      text-decoration: none;
+      color: red;
+    }
   </style>
 </head>
 <body>
@@ -99,6 +118,7 @@
       <div class="left clr_red">
         贵阳市交通管理局
         <img src="image/home_ico_unfold.png" alt="icon">
+        <a class="returnHome" href="login.html">切换账号</a>
       </div>
       <div class="border"></div>
       <div class="left">部门:信息中心</div>
@@ -167,6 +187,13 @@
        showMore()
     })
     $(window).scroll(function() {showMore()});
+    $('body').click(function(){
+      $('.returnHome').hide()
+    })
+    $('.clr_red').click(function(event){
+      event.stopPropagation();
+      $('.returnHome').show()
+    })
   })
 </script>
 </html>
